@@ -16,12 +16,16 @@ project(chiapos C CXX ASM)
 # CMake 3.14+
 include(FetchContent)
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+include(${CMAKE_INSTALL_PREFIX}/share/cmake/pybind11/pybind11Config.cmake)
+else()
 FetchContent_Declare(
   pybind11-src
   GIT_REPOSITORY https://github.com/pybind/pybind11.git
   GIT_TAG        v2.6.2
 )
 FetchContent_MakeAvailable(pybind11-src)
+endif()
 
 FetchContent_Declare(
   cxxopts
@@ -33,7 +37,7 @@ FetchContent_MakeAvailable(cxxopts)
 FetchContent_Declare(
   gulrak
   GIT_REPOSITORY https://github.com/gulrak/filesystem.git
-  GIT_TAG        v1.5.4
+  GIT_TAG        v1.5.6
 )
 FetchContent_MakeAvailable(gulrak)
 
